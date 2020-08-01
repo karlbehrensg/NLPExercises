@@ -215,3 +215,14 @@ model = tf.keras.Sequential([
     tf.keras.Dense(1, activation='sigmoid')
 ])
 ```
+
+## GRU
+```python
+"""A basic model of GRU"""
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(tokenizer.vocab_size, 64),
+    tf.keras.Biderectional(tf.keras.layers.GRU(32)), # With Biderectional layer we double the output shape.
+    tf.keras.Dense(6, activation='relu'),
+    tf.keras.Dense(1, activation='sigmoid')
+])
+```
