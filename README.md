@@ -193,3 +193,25 @@ for word_num in range(1, vocab_size):
 out_v.close()
 out_m.close()
 ```
+
+## LSTM
+```python
+import tensorflow as tf
+
+"""A basic model of LSTM"""
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(tokenizer.vocab_size, 64),
+    tf.keras.Biderectional(tf.keras.layers.LSTM(64)), # With Biderectional layer we double the output shape.
+    tf.keras.Dense(64, activation='relu'),
+    tf.keras.Dense(1, activation='sigmoid')
+])
+
+"""Model with more than 1 biderectional layer"""
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(tokenizer.vocab_size, 64),
+    tf.keras.Biderectional(tf.keras.layers.LSTM(64), return_sequences=True), # Always the first in a sequences of biderectional layers will have return_sequences=True
+    tf.keras.Biderectional(tf.keras.layers.LSTM(32)),
+    tf.keras.Dense(64, activation='relu'),
+    tf.keras.Dense(1, activation='sigmoid')
+])
+```
