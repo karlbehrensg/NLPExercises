@@ -302,3 +302,25 @@ for _ in range(next_words):
 print(seed_text)
 Laurence went to dublin round merry as as water plenty as as water cask cask both new ball ball ball relations relations the wall wall wall introduction had ball nothing her round he your mchugh odaly mchugh might strangled eyes relations relations nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her
 ```
+
+## Experiments in models
+
+We can experiments with the dimensionality of embedding.
+
+```python
+# Second parameter
+Embedding(total_words, 64, input_length=max_sequence_len-1)
+```
+
+With Biderectional layer and LSTM units
+```python
+Bidirectional(LSTM(150))
+
+# We can eliminate the bidirectional layer
+LSTM(100)
+```
+
+Or modify the optimizer 
+```python
+adam = Adam(lr=0.01)
+```
