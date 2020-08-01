@@ -274,4 +274,31 @@ print(ys[6])
  0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
  0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
 
+
+"""Model"""
+model = Sequential()
+model.add(Embedding(total_words, 64, input_length=max_sequence_len-1))
+model.add(Biderectional(LSTM(20)))
+model.add(Dense(total_words, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=[accuracy])
+history = model.fit(xs, ys, epochs=500, verbose=1)
+
+
+"""Predicting the next words"""
+seed_text = "Laurence went to dublin"
+next_words = 100
+  
+for _ in range(next_words):
+	token_list = tokenizer.texts_to_sequences([seed_text])[0]
+	token_list = pad_sequences([token_list], maxlen=max_sequence_len-1, padding='pre')
+	predicted = model.predict_classes(token_list, verbose=0)
+	output_word = ""
+	for word, index in tokenizer.word_index.items():
+		if index == predicted:
+			output_word = word
+			break
+	seed_text += " " + output_word
+
+print(seed_text)
+Laurence went to dublin round merry as as water plenty as as water cask cask both new ball ball ball relations relations the wall wall wall introduction had ball nothing her round he your mchugh odaly mchugh might strangled eyes relations relations nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her round nothing her
 ```
