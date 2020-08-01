@@ -1,16 +1,12 @@
-import os
-import json
-import tensorflow as tf
 import csv
+import os
 import random
-import numpy as np
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
 
-from tensorflow.keras.preprocessing.text import Tokenizer
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras import regularizers
+from tensorflow.keras.preprocessing.text import Tokenizer
 
 embedding_dim = 100
 max_length = 16
